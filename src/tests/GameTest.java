@@ -1,8 +1,6 @@
 package tests;
 
 import main.gameInstance;
-import main.deck;
-import main.card;
 
 public class GameTest{
 
