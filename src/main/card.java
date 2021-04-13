@@ -20,14 +20,51 @@ public class card{
     public int getNumber(){
         return this.number;
     }
-    public boolean playCard(card top){
-        if(number > top.getNumber()){
-            return true;
-        } else if (number == 10 || number == 2 || number == 1){
-            return true;
-        } else {
-            return false;
+    public String toString(){
+        String suitOutput = "";
+        String numOutput = "";
+        switch(suit){
+            case 0: suitOutput = "diamonds";
+                    break;
+            case 1: suitOutput = "hearts";
+                    break;
+            case 2: suitOutput = "clubs";
+                    break;
+            case 3: suitOutput = "spades";
+                    break;
+
         }
+        switch(number){
+            case 1: numOutput = "ace";
+                    break;
+            case 2: numOutput = "two";
+                    break;
+            case 3: numOutput = "three";
+                    break;
+            case 4: numOutput = "four";
+                    break;
+            case 5: numOutput = "five";
+                    break;
+            case 6: numOutput = "six";
+                    break;
+            case 7: numOutput = "seven";
+                    break;
+            case 8: numOutput = "eight";
+                    break;
+            case 9: numOutput = "nine";
+                    break;
+            case 10: numOutput = "ten";
+                    break;
+            case 11: numOutput = "jack";
+                    break;      
+            case 12: numOutput = "queen";
+                    break;
+            case 13: numOutput = "king";
+                    break;
+        }
+        String output = numOutput + " of " + suitOutput;
+        return output;
     }
+
 
 }
