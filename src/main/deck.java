@@ -31,7 +31,6 @@ public class deck{
         for(int i = 0; i < cardDeck.size(); i++){
             output = output + cardDeck.get(i).toString() + "\n";
         }
-        //System.out.println(output);
         return output;
     }
 }
