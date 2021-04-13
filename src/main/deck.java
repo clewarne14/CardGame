@@ -3,19 +3,35 @@ import java.util.*;
 
 
 public class deck{
-    public ArrayList<card> cardDeck;
+    public Stack<card> cardDeck;
 
     public deck(){
-        cardDeck = new ArrayList<card>(52);
+        cardDeck = new Stack<card>();
     }
 
     public void populateDeck(){
-       // Random rand = new Random();
+        Random rand = new Random();
+        ArrayList<card> tempDeck = new ArrayList<card>(52);
         for(int i = 1; i < 14; i++){
             for(int j = 0; j < 4; j++){
                 card input = new card(i,j);
-                cardDeck.set(i*(j+1),input);
+                tempDeck.add(input);
             }
         }
+        while(!tempDeck.isEmpty()){
+            int randInt = rand.nextInt(tempDeck.size());
+            card deckInput = tempDeck.get(randInt);
+            cardDeck.push(deckInput);
+            tempDeck.remove(randInt);
+        }
+    }
+
+    public String toString(){
+        String output = "";
+        for(int i = 0; i < cardDeck.size(); i++){
+            output = output + cardDeck.get(i).toString() + "\n";
+        }
+        //System.out.println(output);
+        return output;
     }
 }
