@@ -16,7 +16,9 @@ public class gameInstance{
     }
 
     public boolean playCard(card top, card played){
-        if(played.getNumber() >= top.getNumber()){
+        if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
+            return false;
+        } else if(played.getNumber() >= top.getNumber()){
             return true;
         } else if (played.getNumber() == 10 || played.getNumber() == 2 || played.getNumber() == 1){
             return true;
@@ -24,9 +26,20 @@ public class gameInstance{
             return false;
         }
     }
-    public boolean draw(){
-        return true;
+
+    public void placeBottom(player play){
+        play.getFaceDown().add(deck.cardDeck.pop());
     }
+
+    public boolean draw(player play){
+        if(deck.cardDeck.isEmpty()){
+            return false;
+        } else {
+            play.getHand().add(deck.cardDeck.pop());
+            return true;
+        }
+    }
+    
     public deck getDeck(){
         return deck;
     }
