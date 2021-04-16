@@ -12,7 +12,11 @@ public class GameTest{
         player p = new player(1);
         g.draw(p);
         g.placeBottom(p);
-        System.out.println(p.getFaceDown());
+        g.draw(p);
+        g.draw(p);
+        System.out.println(p.getHand());
+        p.placeTop(p.getHand().get(0));
+        System.out.println(p.getFaceUp());
         System.out.println(p.getHand());
     }
 }
