@@ -15,7 +15,15 @@ public class player{
         playerUID = playerUIDTemp;
     }
 
-
+    public boolean placeTop(card c){
+        if(faceUp.size() == 3){
+            return false;
+        } else {
+            hand.remove(c);
+            faceUp.add(c);
+            return true;
+        }
+    }
 
     public ArrayList<card> getHand(){
         return hand;
