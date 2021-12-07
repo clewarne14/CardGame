@@ -19,8 +19,10 @@ public class gameInstance{
         if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
             return false;
         } else if(played.getNumber() >= top.getNumber()){
+            this.deck.cardDeck.add(played);
             return true;
         } else if (played.getNumber() == 10 || played.getNumber() == 2 || played.getNumber() == 1){
+            this.deck.cardDeck.add(played);
             return true;
         } else {
             return false;
@@ -39,7 +41,7 @@ public class gameInstance{
             return true;
         }
     }
-    
+
     public deck getDeck(){
         return deck;
     }
