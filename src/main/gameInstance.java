@@ -39,6 +39,7 @@ public class gameInstance{
      * @return whether the card is played
      */
     public boolean playCard(int pos, player p){
+        boolean deckEmpty = deck.isEmpty();
         card top = this.getTopCard();
         if(pos >= p.getHand().size()){
             return false;
@@ -47,16 +48,25 @@ public class gameInstance{
         if(top == null){
             p.removeFromHand(pos);
             playedCards.push(played);
+            if(!deckEmpty){
+                drawCard(p);
+            }
             return true;
         }else if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
             return false;
         } else if(played.getNumber() >= top.getNumber()){
             p.removeFromHand(pos);
             playedCards.push(played);
+            if(!deckEmpty){
+                drawCard(p);
+            }
             return true;
         } else if (played.getNumber() == 10 || played.getNumber() == 2 || played.getNumber() == 1){
             p.removeFromHand(pos);
             playedCards.push(played);
+            if(!deckEmpty){
+                drawCard(p);
+            }
             return true;
         } else {
             return false;
@@ -87,12 +97,31 @@ public class gameInstance{
             play.addToHand(drawn);
             return true;
         }
-        // if(deck.cardDeck.isEmpty()){
-        //     return false;
-        // } else {
-        //     play.getHand().add(deck.cardDeck.pop());
-        //     return true;
-        // }
+    }
+
+    public boolean playTop(int pos, player p){
+        card top = this.getTopCard();
+        if(pos >= p.getFaceUp().size()){
+            return false;
+        }
+        card played = p.getFaceUp().get(pos);
+        if(top == null){
+            p.removeTop(pos);
+            playedCards.push(played);
+            return true;
+        }else if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
+            return false;
+        } else if(played.getNumber() >= top.getNumber()){
+            p.removeTop(pos);
+            playedCards.push(played);
+            return true;
+        } else if (played.getNumber() == 10 || played.getNumber() == 2 || played.getNumber() == 1){
+            p.removeTop(pos);
+            playedCards.push(played);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**

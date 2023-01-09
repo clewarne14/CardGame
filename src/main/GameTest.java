@@ -15,7 +15,6 @@ public class GameTest{
         System.out.println(p.getFaceUp());
         System.out.println("\n");
         System.out.println(p.getHand());
-
         System.out.println(g.getTopCard());
         g.playCard(0,p);
         System.out.println(g.getTopCard());

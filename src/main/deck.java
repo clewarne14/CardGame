@@ -47,6 +47,24 @@ public class deck{
     }
 
     /**
+     * Helper method to determind if the deck is empty
+     * 
+     * @return boolean representing if the deck is empty.
+     */
+    public boolean isEmpty(){
+        return cardDeck.empty();
+    }
+
+    /**
+     * Helper method to check the size of the deck
+     * 
+     * @return an integer to represent the size of the deck
+     */
+    public int numCards(){
+        return cardDeck.size();
+    }
+
+    /**
      * Returns a string value of all of the cards in the deck
      * Cards will be returned in the form "Ace of diamonds"
      * 

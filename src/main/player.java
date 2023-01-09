@@ -37,11 +37,20 @@ public class player{
     }
 
     /**
-     * Method that plays a card from the faceup cards of a given player.
+     * Helper method to remove one of the faceup cards for a player
+     * 
+     * @param i the index of the card to be removed.
+     */
+    public void removeTop(int i){
+        this.faceUp.remove(i);
+    }
+
+    /**
+     * Method that checks if the card chosen can be played
      * @param i the index of the card being played from the faceup cards
      * @return
      */
-    public card playTop(int i){
+    public card checkTop(int i){
         if(i >= this.faceUp.size() || i < 0 || this.hand.size() != 0){
             return null;
         }
