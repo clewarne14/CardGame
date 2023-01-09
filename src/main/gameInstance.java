@@ -101,7 +101,7 @@ public class gameInstance{
 
     public boolean playTop(int pos, player p){
         card top = this.getTopCard();
-        if(pos >= p.getFaceUp().size()){
+        if(pos >= p.getFaceUp().size() || p.getHand().size() != 0){
             return false;
         }
         card played = p.getFaceUp().get(pos);
@@ -165,7 +165,7 @@ public class gameInstance{
      * 
      * @return the stack of cards that have been played
      */
-    public Stack getPlayed(){
+    public Stack<card> getPlayed(){
         return playedCards;
     }
 
