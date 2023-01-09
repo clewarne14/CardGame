@@ -17,8 +17,8 @@ public class gameInstance{
         table = new table();
         deck = new deck();
         for(int i = 0; i < 6; i++){
-            player1.draw();
-            player2.draw();
+            draw(player1);
+            draw(player2);
         }
         for(int i = 0; i < 3; i++){
             placeBottom(player1);
