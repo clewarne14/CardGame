@@ -36,17 +36,18 @@ public class player{
         }
     }
 
-    // /**
-    //  * Unknown what this method is. Delete later
-    //  * @param i
-    //  * @return
-    //  */
-    // public card playTop(int i){
-    //     if(i >= this.faceUp.size() || i < 0 || this.hand.size() != 0){
-    //         return null;
-    //     }
-    //     return this.faceUp.get(i);
-    // }
+    /**
+     * Method that plays a card from the faceup cards of a given player.
+     * @param i the index of the card being played from the faceup cards
+     * @return
+     */
+    public card playTop(int i){
+        if(i >= this.faceUp.size() || i < 0 || this.hand.size() != 0){
+            return null;
+        }
+        return this.faceUp.get(i);
+    }
+    
 
 
     /**
