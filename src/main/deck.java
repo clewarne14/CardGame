@@ -7,7 +7,6 @@ public class deck{
 
     /**
      * Constructor to create a new deck and populate it with cards
-     * 
      */
     public deck(){
         cardDeck = new Stack<card>();
