@@ -17,8 +17,8 @@ public class gameInstance{
         table = new table();
         deck = new deck();
         for(int i = 0; i < 6; i++){
-            draw(player1);
-            draw(player2);
+            player1.draw();
+            player2.draw();
         }
         for(int i = 0; i < 3; i++){
             placeBottom(player1);
@@ -62,20 +62,20 @@ public class gameInstance{
         play.getFaceDown().add(deck.cardDeck.pop());
     }
 
-    /**
-     * Gives a player a card from the deck
-     * 
-     * @param play the player that is trying to draw a card
-     * @return boolean indicating whether or not the card is drawn
-     */
-    public boolean draw(player play){
-        if(deck.cardDeck.isEmpty()){
-            return false;
-        } else {
-            play.getHand().add(deck.cardDeck.pop());
-            return true;
-        }
-    }
+    // /**
+    //  * Gives a player a card from the deck
+    //  * 
+    //  * @param play the player that is trying to draw a card
+    //  * @return boolean indicating whether or not the card is drawn
+    //  */
+    // public boolean draw(player play){
+    //     if(deck.cardDeck.isEmpty()){
+    //         return false;
+    //     } else {
+    //         play.getHand().add(deck.cardDeck.pop());
+    //         return true;
+    //     }
+    // }
 
     /**
      * Getter method to get the deck in the current game
