@@ -1,12 +1,13 @@
 package main;
 
-
+import java.util.Stack;
 
 public class gameInstance{
     private final player player1;
     private final player player2;
     private final table table;
-    private final deck deck;
+    private deck deck;
+    public Stack<card> playedCards;
 
     /*
      * Constructor to create a gameInstance using two user IDs.
@@ -16,14 +17,16 @@ public class gameInstance{
         player2 = new player(player2uidTemp);
         table = new table();
         deck = new deck();
+        playedCards = new Stack<card>();
         for(int i = 0; i < 6; i++){
-            draw(player1);
-            draw(player2);
+            drawCard(player1);
+            drawCard(player2);
         }
         for(int i = 0; i < 3; i++){
             placeBottom(player1);
             placeBottom(player2);
         }
+        playedCards.push(deck.draw());
     }
 
     /**
@@ -35,17 +38,25 @@ public class gameInstance{
      * @param played the card that is trying to be played
      * @return whether the card is played
      */
-    public boolean playCard(card top, card played){
+    public boolean playCard(int pos, player p){
+        card top = this.getTopCard();
+        if(pos >= p.getHand().size()){
+            return false;
+        }
+        card played = p.getHand().get(pos);
         if(top == null){
-            this.deck.cardDeck.add(played);
+            p.removeFromHand(pos);
+            playedCards.push(played);
             return true;
         }else if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
             return false;
         } else if(played.getNumber() >= top.getNumber()){
-            this.deck.cardDeck.add(played);
+            p.removeFromHand(pos);
+            playedCards.push(played);
             return true;
         } else if (played.getNumber() == 10 || played.getNumber() == 2 || played.getNumber() == 1){
-            this.deck.cardDeck.add(played);
+            p.removeFromHand(pos);
+            playedCards.push(played);
             return true;
         } else {
             return false;
@@ -68,13 +79,20 @@ public class gameInstance{
      * @param play the player that is trying to draw a card
      * @return boolean indicating whether or not the card is drawn
      */
-    public boolean draw(player play){
-        if(deck.cardDeck.isEmpty()){
+    public boolean drawCard(player play){
+        card drawn = deck.draw();
+        if(drawn == null){
             return false;
         } else {
-            play.getHand().add(deck.cardDeck.pop());
+            play.addToHand(drawn);
             return true;
         }
+        // if(deck.cardDeck.isEmpty()){
+        //     return false;
+        // } else {
+        //     play.getHand().add(deck.cardDeck.pop());
+        //     return true;
+        // }
     }
 
     /**
@@ -111,6 +129,24 @@ public class gameInstance{
      */
     public player getPlayer2(){
         return player2;
+    }
+
+    /**
+     * Getter method to get the stack of played cards
+     * 
+     * @return the stack of cards that have been played
+     */
+    public Stack getPlayed(){
+        return playedCards;
+    }
+
+    /**
+     * Getter method to get the top card of the played cards
+     * 
+     * @return the top card of the played cards
+     */
+    public card getTopCard(){
+        return playedCards.peek();
     }
 
     

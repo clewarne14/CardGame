@@ -48,6 +48,28 @@ public class player{
         return this.faceUp.get(i);
     }
 
+    /**
+     * Helper method to add a card to the players hand
+     * 
+     * @param c the card to be added to the players hand
+     */
+    public void addToHand(card c){
+        hand.add(c);
+    }
+    
+    /**
+     * Helper method to remove a card from the players hand
+     * 
+     * @param pos the position of the card to be removed
+     */
+    public void removeFromHand(int pos){
+        if(pos > hand.size()){
+            return;
+        }else{
+            hand.remove(pos);
+        }
+    }
+
     // /**
     //  * Gives a player a card from the deck
     //  * 

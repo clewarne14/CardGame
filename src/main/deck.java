@@ -34,6 +34,19 @@ public class deck{
     }
 
     /**
+     * A helper method to draw a card from this deck
+     * 
+     * @return the card drawn from the deck
+     */
+    public card draw(){
+        if(cardDeck.capacity() > 0){
+            return cardDeck.pop();
+        }else{
+            return null;
+        }
+    }
+
+    /**
      * Returns a string value of all of the cards in the deck
      * Cards will be returned in the form "Ace of diamonds"
      * 
