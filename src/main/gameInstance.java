@@ -16,6 +16,10 @@ public class gameInstance{
         player2 = new player(player2uidTemp);
         table = new table();
         deck = new deck();
+        for(int i = 0; i < 6; i++){
+            draw(player1);
+            draw(player2);
+        }
         for(int i = 0; i < 3; i++){
             placeBottom(player1);
             placeBottom(player2);
