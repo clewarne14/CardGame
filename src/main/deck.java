@@ -3,7 +3,7 @@ import java.util.*;
 
 
 public class deck{
-    public static Stack<card> cardDeck;
+    public Stack<card> cardDeck;
 
     /**
      * Constructor to create a new deck and populate it with cards

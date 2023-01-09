@@ -62,20 +62,20 @@ public class gameInstance{
         play.getFaceDown().add(deck.cardDeck.pop());
     }
 
-    // /**
-    //  * Gives a player a card from the deck
-    //  * 
-    //  * @param play the player that is trying to draw a card
-    //  * @return boolean indicating whether or not the card is drawn
-    //  */
-    // public boolean draw(player play){
-    //     if(deck.cardDeck.isEmpty()){
-    //         return false;
-    //     } else {
-    //         play.getHand().add(deck.cardDeck.pop());
-    //         return true;
-    //     }
-    // }
+    /**
+     * Gives a player a card from the deck
+     * 
+     * @param play the player that is trying to draw a card
+     * @return boolean indicating whether or not the card is drawn
+     */
+    public boolean draw(player play){
+        if(deck.cardDeck.isEmpty()){
+            return false;
+        } else {
+            play.getHand().add(deck.cardDeck.pop());
+            return true;
+        }
+    }
 
     /**
      * Getter method to get the deck in the current game

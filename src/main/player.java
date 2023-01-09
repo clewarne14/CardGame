@@ -48,20 +48,20 @@ public class player{
         return this.faceUp.get(i);
     }
 
-    /**
-     * Gives a player a card from the deck
-     * 
-     * @param play the player that is trying to draw a card
-     * @return boolean indicating whether or not the card is drawn
-     */
-    public boolean draw(){
-        if(deck.cardDeck.isEmpty()){
-            return false;
-        } else {
-            hand.add(deck.cardDeck.pop());
-            return true;
-        }
-    }
+    // /**
+    //  * Gives a player a card from the deck
+    //  * 
+    //  * @param play the player that is trying to draw a card
+    //  * @return boolean indicating whether or not the card is drawn
+    //  */
+    // public boolean draw(){
+    //     if(main.gameInstance.getDeck().cardDeck.isEmpty()){
+    //         return false;
+    //     } else {
+    //         hand.add(main.gameInstance.getDeck().cardDeck.pop());
+    //         return true;
+    //     }
+    // }
     
 
 
