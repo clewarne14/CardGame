@@ -8,6 +8,9 @@ public class gameInstance{
     private final table table;
     private final deck deck;
 
+    /*
+     * Constructor to create a gameInstance using two user IDs.
+     */
     public gameInstance(int player1uidTemp, int player2uidTemp){
         player1 = new player(player1uidTemp);
         player2 = new player(player2uidTemp);
@@ -15,6 +18,11 @@ public class gameInstance{
         deck = new deck();
     }
 
+    /*
+     * Plays a card by putting it on top of the stack of already played cards.
+     * 
+     * Checks if it is a valid play and, if it is, plays the card
+     */
     public boolean playCard(card top, card played){
         if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
             return false;

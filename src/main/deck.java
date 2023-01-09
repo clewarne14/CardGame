@@ -5,10 +5,18 @@ import java.util.*;
 public class deck{
     public Stack<card> cardDeck;
 
+    /**
+     * Constructor to create a new deck and populate it with cards
+     * 
+     */
     public deck(){
         cardDeck = new Stack<card>();
+        populateDeck();
     }
 
+    /**
+     * Method to populate the deck and randomize the deck order
+     */
     public void populateDeck(){
         Random rand = new Random();
         ArrayList<card> tempDeck = new ArrayList<card>(52);
@@ -26,6 +34,12 @@ public class deck{
         }
     }
 
+    /**
+     * Returns a string value of all of the cards in the deck
+     * Cards will be returned in the form "Ace of diamonds"
+     * 
+     * @return a string value representing the value of the deck
+     */
     public String toString(){
         String output = "";
         for(int i = 0; i < cardDeck.size(); i++){
