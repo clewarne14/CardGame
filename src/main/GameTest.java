@@ -3,22 +3,43 @@ package main;
 public class GameTest{
 
     public static void main(String [] args){
-        gameInstance g = new gameInstance(1,2);
+        gameInstance g = new gameInstance(1, 2);
         player p = g.getPlayer1();
-        System.out.println(p.getHand());
-        System.out.println("\n");
         System.out.println(p.getFaceDown());
-        System.out.println("\n");
         p.placeTop(0);
         p.placeTop(0);
         p.placeTop(0);
+        p.drawSpecificCard(9, 1);
+        System.out.println(p.getHand());
+        p.drawSpecificCard(2, 1);
+        g.playCard(4, p);
+        while(!g.getDeck().isEmpty()){
+            g.drawCard(p);
+        }
+        p.emptyHand();
         System.out.println(p.getFaceUp());
-        System.out.println("\n");
+        g.playTop(0, p);
+        System.out.println(p.getFaceUp());
+        System.out.println(g.getPlayed());
+        p.drawSpecificCard(2, 1);
+        g.playCard(0, p);
+        g.playTop(0,p);
+        p.drawSpecificCard(2, 1);
+        g.playCard(0, p);
+        g.playTop(0,p);
         System.out.println(p.getHand());
-        System.out.println(g.getTopCard());
-        g.playCard(0,p);
-        System.out.println(g.getTopCard());
-        System.out.println(p.getHand());
+        System.out.println(p.getFaceUp());
+        System.out.println(g.getPlayed());
+        p.drawSpecificCard(2, 1);
+        g.playCard(0, p);
+        System.out.println(p.getFaceDown());
+        g.playBottom(0, p);
+        p.getFaceDown();
+        System.out.println(p.getFaceDown());
+        // System.out.println(p.getFaceUp());
+        // g.playTop(0,p);
+        // System.out.println(p.getFaceUp());
+        // System.out.println(g.getTopCard());
 
 
     }

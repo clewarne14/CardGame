@@ -146,6 +146,20 @@ public class gameInstance{
         // }
     }
 
+    public boolean playBottom(int pos, player p){
+        card played = p.getFaceDown().get(pos);
+        System.out.println(p.getFaceUp().size());
+        if(p.getFaceUp().size() != 0 || p.getHand().size() != 0 || pos >= p.getFaceDown().size() || !checkPlay(played)){
+            return false;
+        }
+        else{
+            p.removeBottom(pos);
+
+            playedCards.push(played);
+            return true;
+        }
+    }
+
     /**
      * Helper method to determine if a card can be played
      * 

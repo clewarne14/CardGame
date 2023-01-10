@@ -79,6 +79,15 @@ public class player{
         }
     }
 
+    /**
+     * Helper method to remove a card from the given facedown cards
+     * 
+     * @param i the index of the card wanting to be removed
+     */
+    public void removeBottom(int i){
+        this.faceDown.remove(i);
+    }
+
     // /**
     //  * Gives a player a card from the deck
     //  * 

@@ -4,6 +4,7 @@ public class controller {
     public static void main(String[] args){
         gameInstance g = new gameInstance(1, 2);
         player p = g.getPlayer1();
+        System.out.println(p.getFaceDown());
         p.placeTop(0);
         p.placeTop(0);
         p.placeTop(0);
@@ -28,6 +29,12 @@ public class controller {
         System.out.println(p.getHand());
         System.out.println(p.getFaceUp());
         System.out.println(g.getPlayed());
+        p.drawSpecificCard(2, 1);
+        g.playCard(0, p);
+        System.out.println(p.getFaceDown());
+        g.playBottom(0, p);
+        p.getFaceDown();
+        System.out.println(p.getFaceDown());
         // System.out.println(p.getFaceUp());
         // g.playTop(0,p);
         // System.out.println(p.getFaceUp());
