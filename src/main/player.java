@@ -132,4 +132,25 @@ public class player{
     public int getPlayerUID(){
         return playerUID;
     }
+
+    /**
+     * Debugging method to add a specific card to a players hand
+     * 
+     * @param num the number of the card to be added
+     * @param suit the suit of the card to be added
+     * @param p the player being given the card 
+     */
+    public void drawSpecificCard(int num, int suit){
+        card c = new card(num, suit);
+        addToHand(c);
+    }
+
+    /**
+     * Debugging method to remove all cards from a players hand.
+     */
+    public void emptyHand(){
+        while(!hand.isEmpty()){
+            hand.remove(0);
+        }
+    }
 }
