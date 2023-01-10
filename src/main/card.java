@@ -1,16 +1,14 @@
 package main;
 
 public class card{
-    private int suit; //Suit will be either clubs, diamonds, hearts or spades. Diamonds are 0, hearts are 1, clubs are 2 and spades are 3
-    //private boolean color; //Suit will determine color, either red or black. Red is true and Black is false
-    private int number; //number will be number on the card. 11 will be jack, 12 will be queen, 13 will be king
+    private final int suit; //Suit will be either clubs, diamonds, hearts or spades. Diamonds are 0, hearts are 1, clubs are 2 and spades are 3
+    private final int number; //number will be number on the card. 11 will be jack, 12 will be queen, 13 will be king
 
     /*
      * Constructor to declare the number and suit of the card.
      */
     public card(int numInput, int suitInput){
         this.suit = suitInput;
-       // this.color = colorInput;
         this.number = numInput;
     }
 
