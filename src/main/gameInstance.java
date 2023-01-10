@@ -2,7 +2,7 @@ package main;
 
 import java.util.Stack;
 
-public class gameInstance{
+public class gameInstance {
     private final player player1;
     private final player player2;
     private final table table;
@@ -12,17 +12,17 @@ public class gameInstance{
     /*
      * Constructor to create a gameInstance using two user IDs.
      */
-    public gameInstance(int player1uidTemp, int player2uidTemp){
+    public gameInstance(int player1uidTemp, int player2uidTemp) {
         player1 = new player(player1uidTemp);
         player2 = new player(player2uidTemp);
         table = new table();
         deck = new deck();
         playedCards = new Stack<card>();
-        for(int i = 0; i < 6; i++){
+        for (int i = 0; i < 6; i++) {
             drawCard(player1);
             drawCard(player2);
         }
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             placeBottom(player1);
             placeBottom(player2);
         }
@@ -34,63 +34,32 @@ public class gameInstance{
      * 
      * Checks if it is a valid play and, if it is, plays the card
      * 
-     * @param top the top card on the pile
+     * @param top    the top card on the pile
      * @param played the card that is trying to be played
      * @return whether the card is played
      */
-    public boolean playCard(int pos, player p){
+    public boolean playCard(int pos, player p) {
         boolean deckEmpty = deck.isEmpty();
         // card top = this.getTopCard();
         card played = p.getHand().get(pos);
-        if(pos >= p.getHand().size() || !checkPlay(played)){
+        if (pos >= p.getHand().size() || !checkPlay(played)) {
             return false;
-        }
-        else{
+        } else {
             p.removeFromHand(pos);
             playedCards.push(played);
-            if(!deckEmpty){
+            if (!deckEmpty) {
                 drawCard(p);
             }
             return true;
         }
-        // if(pos >= p.getHand().size()){
-        //     return false;
-        // }
-        // if(top == null){
-        //     p.removeFromHand(pos);
-        //     playedCards.push(played);
-        //     if(!deckEmpty){
-        //         drawCard(p);
-        //     }
-        //     return true;
-        // }else if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
-        //     return false;
-        // } else if(played.getNumber() >= top.getNumber()){
-        //     p.removeFromHand(pos);
-        //     playedCards.push(played);
-        //     if(!deckEmpty){
-        //         drawCard(p);
-        //     }
-        //     return true;
-        // } else if (played.getNumber() == 10 || played.getNumber() == 2 || played.getNumber() == 1){
-        //     p.removeFromHand(pos);
-        //     playedCards.push(played);
-        //     if(!deckEmpty){
-        //         drawCard(p);
-        //     }
-        //     return true;
-        // } else {
-        //     return false;
-        // }
     }
 
-
     /**
-     * Plays a random card facedown 
+     * Plays a random card facedown
      * 
      * @param play the player that the game is playing cards facedown for
      */
-    public void placeBottom(player play){
+    public void placeBottom(player play) {
         play.getFaceDown().add(deck.cardDeck.pop());
     }
 
@@ -100,9 +69,9 @@ public class gameInstance{
      * @param play the player that is trying to draw a card
      * @return boolean indicating whether or not the card is drawn
      */
-    public boolean drawCard(player play){
+    public boolean drawCard(player play) {
         card drawn = deck.draw();
-        if(drawn == null){
+        if (drawn == null) {
             return false;
         } else {
             play.addToHand(drawn);
@@ -114,47 +83,35 @@ public class gameInstance{
      * A method to play a card from the faceup cards on the table
      * 
      * @param pos the position of the card being played
-     * @param p the player attempting to play a card
+     * @param p   the player attempting to play a card
      * @return a boolean representing whether or not the card was played.
      */
-    public boolean playTop(int pos, player p){
+    public boolean playTop(int pos, player p) {
         card played = p.getFaceUp().get(pos);
-        if(pos >= p.getFaceUp().size() || p.getHand().size() != 0 || !checkPlay(played)){
+        if (pos >= p.getFaceUp().size() || p.getHand().size() != 0 || !checkPlay(played)) {
             return false;
-        }
-        else{
+        } else {
             p.removeTop(pos);
             playedCards.push(played);
             return true;
         }
-        // if(top == null){
-        //     p.removeTop(pos);
-        //     playedCards.push(played);
-        //     return true;
-        // }else if(top.getNumber() == 1 && played.getNumber() != 1 && played.getNumber() != 2 && played.getNumber() != 10){
-        //     return false;
-        // } else if(played.getNumber() >= top.getNumber()){
-        //     p.removeTop(pos);
-        //     playedCards.push(played);
-        //     return true;
-        // } else if (played.getNumber() == 10 || played.getNumber() == 2 || played.getNumber() == 1){
-        //     p.removeTop(pos);
-        //     playedCards.push(played);
-        //     return true;
-        // } else {
-        //     return false;
-        // }
     }
 
-    public boolean playBottom(int pos, player p){
+    /**
+     * Method to play facedown cards.
+     * 
+     * @param pos the position of the card trying to be played
+     * @param p   the player trying to make the move
+     * @return a boolean indicating whether or not the move is successful
+     */
+    public boolean playBottom(int pos, player p) {
         card played = p.getFaceDown().get(pos);
         System.out.println(p.getFaceUp().size());
-        if(p.getFaceUp().size() != 0 || p.getHand().size() != 0 || pos >= p.getFaceDown().size() || !checkPlay(played)){
+        if (p.getFaceUp().size() != 0 || p.getHand().size() != 0 || pos >= p.getFaceDown().size()
+                || !checkPlay(played)) {
             return false;
-        }
-        else{
+        } else {
             p.removeBottom(pos);
-
             playedCards.push(played);
             return true;
         }
@@ -166,15 +123,18 @@ public class gameInstance{
      * @param c the card being played
      * @return a boolean representing whether or not the card can be played
      */
-    public boolean checkPlay(card c){
+    public boolean checkPlay(card c) {
+        if (playedCards.size() == 0) {
+            return true;
+        }
         card top = playedCards.peek();
-        if(top == null){
+        if (top == null) {
             return true;
-        }else if(top.getNumber() == 1 && c.getNumber() != 1 && c.getNumber() != 2 && c.getNumber() != 10){
+        } else if (top.getNumber() == 1 && c.getNumber() != 1 && c.getNumber() != 2 && c.getNumber() != 10) {
             return false;
-        } else if(c.getNumber() >= top.getNumber()){
+        } else if (c.getNumber() >= top.getNumber()) {
             return true;
-        } else if (c.getNumber() == 10 || c.getNumber() == 2 || c.getNumber() == 1){
+        } else if (c.getNumber() == 10 || c.getNumber() == 2 || c.getNumber() == 1) {
             return true;
         } else {
             return false;
@@ -182,11 +142,23 @@ public class gameInstance{
     }
 
     /**
+     * A method to pick up all of the cards that have been played.
+     * 
+     * @param p the player to pick up all of the cards
+     */
+    public void pickUpAll(player p) {
+        while (!playedCards.isEmpty()) {
+            p.addToHand(playedCards.pop());
+        }
+        return;
+    }
+
+    /**
      * Getter method to get the deck in the current game
      * 
      * @return the deck in the current game
      */
-    public deck getDeck(){
+    public deck getDeck() {
         return deck;
     }
 
@@ -195,7 +167,7 @@ public class gameInstance{
      * 
      * @return the table in the current game
      */
-    public table getTable(){
+    public table getTable() {
         return table;
     }
 
@@ -204,8 +176,8 @@ public class gameInstance{
      * 
      * @return the first player in the current game
      */
-    public player getPlayer1(){
-        return  player1;
+    public player getPlayer1() {
+        return player1;
     }
 
     /**
@@ -213,7 +185,7 @@ public class gameInstance{
      * 
      * @return the second player in the current game
      */
-    public player getPlayer2(){
+    public player getPlayer2() {
         return player2;
     }
 
@@ -222,7 +194,7 @@ public class gameInstance{
      * 
      * @return the stack of cards that have been played
      */
-    public Stack<card> getPlayed(){
+    public Stack<card> getPlayed() {
         return playedCards;
     }
 
@@ -231,11 +203,8 @@ public class gameInstance{
      * 
      * @return the top card of the played cards
      */
-    public card getTopCard(){
+    public card getTopCard() {
         return playedCards.peek();
     }
 
-
-
-    
 }

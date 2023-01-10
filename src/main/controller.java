@@ -1,43 +1,56 @@
 package main;
 
+import java.util.Scanner;
+
 public class controller {
-    public static void main(String[] args){
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
         gameInstance g = new gameInstance(1, 2);
         player p = g.getPlayer1();
-        System.out.println(p.getFaceDown());
-        p.placeTop(0);
-        p.placeTop(0);
-        p.placeTop(0);
-        p.drawSpecificCard(9, 1);
-        System.out.println(p.getHand());
-        p.drawSpecificCard(2, 1);
-        g.playCard(4, p);
-        while(!g.getDeck().isEmpty()){
-            g.drawCard(p);
+        while (p.getFaceUp().size() < 3) {
+            System.out.print("\nYour cards are: ");
+            for (int i = 0; i < p.getHand().size(); i++) {
+                System.out.print(p.getHand().get(i) + ", ");
+            }
+            System.out.print("\nYour top cards are: ");
+            for (int i = 0; i < p.getFaceUp().size(); i++) {
+                System.out.print(p.getFaceUp().get(i) + ", ");
+            }
+            System.out.print("\nChoose a card to place on top: ");
+            int i = scan.nextInt();
+            if (!p.placeTop(i - 1)) {
+                System.out.println("You chose an invalid card. Please choose again.");
+            }
+
         }
-        p.emptyHand();
-        System.out.println(p.getFaceUp());
-        g.playTop(0, p);
-        System.out.println(p.getFaceUp());
-        System.out.println(g.getPlayed());
-        p.drawSpecificCard(2, 1);
-        g.playCard(0, p);
-        g.playTop(0,p);
-        p.drawSpecificCard(2, 1);
-        g.playCard(0, p);
-        g.playTop(0,p);
-        System.out.println(p.getHand());
-        System.out.println(p.getFaceUp());
-        System.out.println(g.getPlayed());
-        p.drawSpecificCard(2, 1);
-        g.playCard(0, p);
-        System.out.println(p.getFaceDown());
-        g.playBottom(0, p);
-        p.getFaceDown();
-        System.out.println(p.getFaceDown());
-        // System.out.println(p.getFaceUp());
-        // g.playTop(0,p);
-        // System.out.println(p.getFaceUp());
-        // System.out.println(g.getTopCard());
+        while (p.getFaceDown().size() > 0) {
+            System.out.print("\nYour cards are: ");
+            for (int i = 0; i < p.getHand().size(); i++) {
+                System.out.print(p.getHand().get(i) + ", ");
+            }
+            System.out.print("\nYour top cards are: ");
+            for (int i = 0; i < p.getFaceUp().size(); i++) {
+                System.out.print(p.getFaceUp().get(i) + ", ");
+            }
+            if (!g.getPlayed().isEmpty()) {
+                System.out.print("\nThe faceup card is: " + g.getTopCard());
+            } else {
+                System.out.print("\nThere is no faceup card, play anything!");
+            }
+            if (!p.getHand().isEmpty()) {
+                // System.out.println("Which face up card would you like to play?");
+                System.out.print("\nChoose a card from your hand to play: ");
+                String inp = scan.next();
+                if (inp.equals("Pass")) {
+                    g.pickUpAll(p);
+                } else {
+                    int i = Integer.parseInt(inp);
+                    if (!g.playCard(i - 1, p)) {
+                        System.out.println("This is not a valid choice. Please choose again");
+                    }
+                }
+                System.out.println("/n/n/n/n/n/n/n");
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@ package main;
 
 import java.util.*;
 
-public class player{
+public class player {
     private ArrayList<card> hand;
     private ArrayList<card> faceDown;
     private ArrayList<card> faceUp;
@@ -13,7 +13,7 @@ public class player{
      * 
      * @param playerUIDTemp The user ID of the player
      */
-    public player(int playerUIDTemp){
+    public player(int playerUIDTemp) {
         hand = new ArrayList<card>();
         faceDown = new ArrayList<card>();
         faceUp = new ArrayList<card>();
@@ -26,12 +26,15 @@ public class player{
      * @param i The card position in the hand of the player
      * @return Boolean value indicating whether or not the play was successful
      */
-    public boolean placeTop(int i){
-        if(faceUp.size() == 3){
+    public boolean placeTop(int i) {
+        if (faceUp.size() == 3 || i >= hand.size()) {
             return false;
         } else {
             card c = hand.remove(i);
+            System.out.println(c.toString());
+            System.out.println(hand);
             faceUp.add(c);
+            System.out.println(faceUp);
             return true;
         }
     }
@@ -41,17 +44,18 @@ public class player{
      * 
      * @param i the index of the card to be removed.
      */
-    public void removeTop(int i){
+    public void removeTop(int i) {
         this.faceUp.remove(i);
     }
 
     /**
      * Method that checks if the card chosen can be played
+     * 
      * @param i the index of the card being played from the faceup cards
      * @return
      */
-    public card checkTop(int i){
-        if(i >= this.faceUp.size() || i < 0 || this.hand.size() != 0){
+    public card checkTop(int i) {
+        if (i >= this.faceUp.size() || i < 0 || this.hand.size() != 0) {
             return null;
         }
         return this.faceUp.get(i);
@@ -62,19 +66,19 @@ public class player{
      * 
      * @param c the card to be added to the players hand
      */
-    public void addToHand(card c){
+    public void addToHand(card c) {
         hand.add(c);
     }
-    
+
     /**
      * Helper method to remove a card from the players hand
      * 
      * @param pos the position of the card to be removed
      */
-    public void removeFromHand(int pos){
-        if(pos > hand.size()){
+    public void removeFromHand(int pos) {
+        if (pos > hand.size()) {
             return;
-        }else{
+        } else {
             hand.remove(pos);
         }
     }
@@ -84,43 +88,40 @@ public class player{
      * 
      * @param i the index of the card wanting to be removed
      */
-    public void removeBottom(int i){
+    public void removeBottom(int i) {
         this.faceDown.remove(i);
     }
 
     // /**
-    //  * Gives a player a card from the deck
-    //  * 
-    //  * @param play the player that is trying to draw a card
-    //  * @return boolean indicating whether or not the card is drawn
-    //  */
+    // * Gives a player a card from the deck
+    // *
+    // * @param play the player that is trying to draw a card
+    // * @return boolean indicating whether or not the card is drawn
+    // */
     // public boolean draw(){
-    //     if(main.gameInstance.getDeck().cardDeck.isEmpty()){
-    //         return false;
-    //     } else {
-    //         hand.add(main.gameInstance.getDeck().cardDeck.pop());
-    //         return true;
-    //     }
+    // if(main.gameInstance.getDeck().cardDeck.isEmpty()){
+    // return false;
+    // } else {
+    // hand.add(main.gameInstance.getDeck().cardDeck.pop());
+    // return true;
     // }
-    
-
+    // }
 
     /**
      * Getter method to return the hand of the player
      * 
      * @return the hand of the player
      */
-    public ArrayList<card> getHand(){
+    public ArrayList<card> getHand() {
         return hand;
     }
-
 
     /**
      * Getter method to return the facedown cards of the player
      * 
      * @return the facedown cards of the player
      */
-    public ArrayList<card> getFaceDown(){
+    public ArrayList<card> getFaceDown() {
         return faceDown;
     }
 
@@ -129,7 +130,7 @@ public class player{
      * 
      * @return the faceup cards of the player
      */
-    public ArrayList<card> getFaceUp(){
+    public ArrayList<card> getFaceUp() {
         return faceUp;
     }
 
@@ -138,18 +139,18 @@ public class player{
      * 
      * @return the UserID of the player
      */
-    public int getPlayerUID(){
+    public int getPlayerUID() {
         return playerUID;
     }
 
     /**
      * Debugging method to add a specific card to a players hand
      * 
-     * @param num the number of the card to be added
+     * @param num  the number of the card to be added
      * @param suit the suit of the card to be added
-     * @param p the player being given the card 
+     * @param p    the player being given the card
      */
-    public void drawSpecificCard(int num, int suit){
+    public void drawSpecificCard(int num, int suit) {
         card c = new card(num, suit);
         addToHand(c);
     }
@@ -157,8 +158,8 @@ public class player{
     /**
      * Debugging method to remove all cards from a players hand.
      */
-    public void emptyHand(){
-        while(!hand.isEmpty()){
+    public void emptyHand() {
+        while (!hand.isEmpty()) {
             hand.remove(0);
         }
     }

@@ -36,6 +36,10 @@ public class GameTest{
         g.playBottom(0, p);
         p.getFaceDown();
         System.out.println(p.getFaceDown());
+        System.out.println(g.getPlayed());
+        System.out.println(p.getHand());
+        g.pickUpAll(p);
+        System.out.println(p.getHand());
         // System.out.println(p.getFaceUp());
         // g.playTop(0,p);
         // System.out.println(p.getFaceUp());
